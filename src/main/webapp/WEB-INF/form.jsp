@@ -9,13 +9,13 @@
 <html>
 <head>
     <title>Welcome to my Form</title>
-    <form action="/sum" method="post">
-        <input name="number1">
-        <input name="number2">
-        <button>Submit</button>
-    </form>
+
 </head>
 <body>
-
+<form action="/sum" method="post">
+    <input name="number1">
+    <input name="number2">
+    <button>Submit</button>
+</form>
 </body>
 </html>
