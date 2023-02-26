@@ -1,8 +1,6 @@
 
 R
 "src/main/webapp/WEB-INF/result.jsp,9\5\958552d231a57efa42194d410d914be0d305724e
-k
-;src/main/java/com/example/servletproject/entity/Result.java,2\d\2d959f953736a0f49ed30324dc31b43e0859df79
 p
 @src/main/java/com/example/servletproject/service/SumService.java,9\d\9d41d0ab9d3fb873b0f26d0835812af159bc46a4
 Q
