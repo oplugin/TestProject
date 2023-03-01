@@ -13,7 +13,7 @@
 <body>
     <h1>Hello</h1>
     <h3>Enter your book</h3>
-    <form action="/bookcontoller" method="post">
+    <form action="/book-servlet" method="post">
         <label>Name</label><br>
         <input type="text" name="bookName">
         <label>Author</label><br>

@@ -1,4 +1,4 @@
-package com.example.servletproject.service;
+package com.example.servletproject.samples;
 
 public enum SumService {
 

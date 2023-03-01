@@ -1,4 +1,6 @@
-package com.example.servletproject.entity;
+package com.example.servletproject.samples;
+
+import com.example.servletproject.samples.Book;
 
 import java.util.ArrayList;
 import java.util.List;

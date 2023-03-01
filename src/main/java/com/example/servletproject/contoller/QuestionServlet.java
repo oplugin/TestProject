@@ -1,4 +1,4 @@
-package com.example.servletproject;
+package com.example.servletproject.contoller;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;

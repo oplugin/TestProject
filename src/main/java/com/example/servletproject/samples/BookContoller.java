@@ -1,7 +1,5 @@
-package com.example.servletproject.contoller;
+package com.example.servletproject.samples;
 
-import com.example.servletproject.dao.BookDao;
-import com.example.servletproject.entity.Book;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/bookcontoller")
+@WebServlet(name = "BookServlet", value = "/book-servlet")
 public class BookContoller extends HttpServlet {
 
     BookDao bookDao;

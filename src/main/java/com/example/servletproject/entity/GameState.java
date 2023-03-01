@@ -1,5 +1,5 @@
 package com.example.servletproject.entity;
 
-public class Result {
-
+public enum GameState {
+    PLAY, WIN, LOST
 }

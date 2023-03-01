@@ -1,4 +1,4 @@
-package com.example.servletproject.entity;
+package com.example.servletproject.samples;
 
 
 public class Book {

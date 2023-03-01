@@ -1,7 +1,4 @@
-package com.example.servletproject.dao;
-
-import com.example.servletproject.entity.Book;
-import com.example.servletproject.entity.Store;
+package com.example.servletproject.samples;
 
 import java.util.List;
 
