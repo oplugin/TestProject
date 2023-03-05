@@ -35,7 +35,7 @@ public class SumServlet extends HttpServlet {
         int result = sumService.getResult(number1, number2);
         req.setAttribute("result", result);
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/result.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/samples/result.jsp");
         requestDispatcher.forward(req, resp);
 
     }

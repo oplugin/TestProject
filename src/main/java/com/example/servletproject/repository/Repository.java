@@ -1,4 +1,4 @@
-package com.example.servletproject.contoller.repository;
+package com.example.servletproject.repository;
 
 import java.util.Collection;
 import java.util.stream.Stream;

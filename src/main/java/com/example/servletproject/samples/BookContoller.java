@@ -22,7 +22,7 @@ public class BookContoller extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/bookindex.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/samples/bookindex.jsp");
         dispatcher.forward(req, resp);
     }
 
@@ -39,6 +39,6 @@ public class BookContoller extends HttpServlet {
         books.forEach(i -> System.out.println(i));
 
         req.setAttribute("books", books);
-        req.getRequestDispatcher("/WEB-INF/books.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/samples/books.jsp").forward(req, resp);
     }
 }
