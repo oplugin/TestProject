@@ -1,16 +1,16 @@
 package com.example.servletproject.samples;
 
+import com.example.servletproject.samples.model.Person;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "NameServlet", value = "/name")
-public class NameServlet extends HttpServlet {
+@WebServlet(name = "PersonServlet", value = "/person")
+public class PersonServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String age = request.getParameter("age");
@@ -26,15 +26,15 @@ public class NameServlet extends HttpServlet {
 
         if (error.length() > 0) {
             request.setAttribute("error", error.toString());
+            request.setAttribute("person", new Person());
         } else {
-            request.setAttribute("firstName", firstName);
-            request.setAttribute("lastName", lastName);
-            request.setAttribute("age", age);
+            request.setAttribute("person",
+                    new Person(firstName, lastName, Integer.parseInt(age)));
+
         }
 
         getServletContext().getRequestDispatcher("/WEB-INF/samples/name.jsp")
                 .forward(request, response);
-
     }
 
     @Override

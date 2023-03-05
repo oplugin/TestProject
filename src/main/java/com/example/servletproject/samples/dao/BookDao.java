@@ -1,4 +1,7 @@
-package com.example.servletproject.samples;
+package com.example.servletproject.samples.dao;
+
+import com.example.servletproject.samples.Book;
+import com.example.servletproject.samples.Store;
 
 import java.util.List;
 

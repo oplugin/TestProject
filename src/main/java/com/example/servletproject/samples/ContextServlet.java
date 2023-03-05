@@ -6,11 +6,16 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "UsersServlet", value = "/users")
-public class UsersServlet extends HttpServlet {
+@WebServlet(name = "ContextServlet", value = "/token")
+public class ContextServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        String token = getServletContext().getInitParameter("authorizationToken");
+
+        if (token != null) {
+            System.out.println("Auth token : " + token);
+        }
     }
 
     @Override

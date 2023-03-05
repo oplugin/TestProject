@@ -11,7 +11,11 @@ import java.util.Collection;
 public class Question implements AbstractEntity {
 
     private Long id;
+
     private String text;
+
+    private GameState gameState;
+
     private final Collection<Answer> answers = new ArrayList<>();
 
 

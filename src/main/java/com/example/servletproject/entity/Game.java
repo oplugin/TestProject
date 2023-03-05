@@ -1,18 +1,15 @@
 package com.example.servletproject.entity;
 
 import lombok.*;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Answer implements AbstractEntity {
+public class Game implements AbstractEntity {
 
     private Long id;
+    private Long currentQuestionId;
+    private GameState gameState;
 
-    private String text;
-
-    private Long questionId;
-
-    private Long nextQuestionId;
 }
-

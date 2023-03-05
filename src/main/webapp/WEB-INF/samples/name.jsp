@@ -18,8 +18,8 @@
 
 <p>${error}</p>
 
-<p>Hey ${firstName} ${lastName}, nice to meet you.</p>
-<p>You are ${age} years old.</p>
+<p>Hey ${person.firstName} ${person.lastName}, nice to meet you.</p>
+<p>You are ${person.age} years old.</p>
 
 </body>
 </html>
