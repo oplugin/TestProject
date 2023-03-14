@@ -56,23 +56,38 @@ public class Runner {
         answers.add(answer5);
         answers.add(answer6);
 
-        Util util = new Util();
-        util.printQuestionAndAnswer(questions, answers);
-        util.userChoice(answers);
-        Long nextQuestionByAnswerId = util.findNextQuestionByAnswerId(answers);
-        System.out.println("Next QuestionID is : " +  nextQuestionByAnswerId);
+        for (Question question : questions) {
+            question.getId().equals("1");
+        }
 
-        util.printQuestionAndAnswer(questions, answers);
-        util.userChoice(answers);
-        util.findNextQuestionByAnswerId(answers);
+        String questionGameState = questions.stream()
+                .filter(q -> q.getId().equals(1L))
+                .map(Question::getGameState).toList()
+                .toString();
 
-        util.printQuestionAndAnswer(questions, answers);
-        util.userChoice(answers);
-        util.findNextQuestionByAnswerId(answers);
+        String test = questionGameState.replaceAll("[\\[\\](){}]", "");
 
-        util.printQuestionAndAnswer(questions, answers);
-        util.userChoice(answers);
-        util.findNextQuestionByAnswerId(answers);
+        System.out.println(test);
+
+        question1.getText();
+
+//        Util util = new Util();
+//        util.printQuestionAndAnswer(questions, answers);
+//        util.userChoice(answers);
+//        Long nextQuestionByAnswerId = util.findNextQuestionByAnswerId(answers);
+//        System.out.println("Next QuestionID is : " +  nextQuestionByAnswerId);
+//
+//        util.printQuestionAndAnswer(questions, answers);
+//        util.userChoice(answers);
+//        util.findNextQuestionByAnswerId(answers);
+//
+//        util.printQuestionAndAnswer(questions, answers);
+//        util.userChoice(answers);
+//        util.findNextQuestionByAnswerId(answers);
+//
+//        util.printQuestionAndAnswer(questions, answers);
+//        util.userChoice(answers);
+//        util.findNextQuestionByAnswerId(answers);
 
     }
 }

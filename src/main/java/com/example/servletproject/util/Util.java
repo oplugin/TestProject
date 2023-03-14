@@ -154,9 +154,11 @@ public class Util {
         return answerId;
     }
 
-    public Long findNextQuestionByAnswerId(Collection<Answer> answers) {
+    public Long findNextQuestionByAnswerId(String userAnswer, Collection<Answer> answers) {
+
+        Long answerId = Long.valueOf(userAnswer);
         String findNextQuestionId = answers.stream()
-                .filter(answer -> answer.getId() == chosenAnswerId)
+                .filter(answer -> answer.getId() == answerId)
                 .map(answer -> answer.getNextQuestionId())
                 .collect(Collectors.toList()).toString();
 

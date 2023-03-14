@@ -10,12 +10,11 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @WebServlet(name = "GameServlet", value = "/game")
 public class GameServlet extends HttpServlet {
@@ -23,6 +22,13 @@ public class GameServlet extends HttpServlet {
     Collection<Question> questions = new ArrayList<>();
     Collection<Answer> answers = new ArrayList<>();
     Util util = new Util();
+
+    public Long currentQuestionId = 1L;
+    public Long nextQuestionId = 0L;
+    public Long chosenAnswerId = 0L;
+
+
+
 
     public void init() throws ServletException {
         Question question1 = new Question(1L, "Ты потерял память. Принять вызов НЛО ?", GameState.PLAY);
@@ -59,22 +65,38 @@ public class GameServlet extends HttpServlet {
         answers.add(answer4);
         answers.add(answer5);
         answers.add(answer6);
+
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String questionText = util.finQuestionText(questions, answers);
-        request.setAttribute("questionText", questionText);
+        // TODO Find question by First Question ID
+        // Question.ID
+        Question question = getQuestion(request);
+        request.setAttribute("question", question);
 
-        String questionId = request.getParameter("id");
-        System.out.println(questionId);
 
-        Long currentQuestionId = util.currentQuestionId;
-        request.setAttribute("questionId", currentQuestionId);
 
-        List<String> answersByQuestionId = util.getAnswersByQuestionId(answers, questionId);
-        request.setAttribute("answer", answersByQuestionId);
+        // TODO Provide request with AnswerList according current QuestionID
+        // AnswerList
+        // Answer.ID
+        // Answer.TEXT
+        List<Answer> answerList = answers.stream()
+                .filter(answer -> answer.getQuestionId() == question.getId())
+                .collect(Collectors.toList());
+
+        request.setAttribute("answerList", answerList);
+
+//
+//        String questionId = request.getParameter("id");
+//        System.out.println(questionId);
+//
+//        Long currentQuestionId = util.currentQuestionId;
+//        request.setAttribute("questionId", currentQuestionId);
+//
+//        List<String> answersByQuestionId = util.getAnswersByQuestionId(answers, questionId);
+//        request.setAttribute("answer", answersByQuestionId);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/game.jsp");
         dispatcher.forward(request, response);
@@ -82,6 +104,15 @@ public class GameServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String userAnswer = request.getParameter("userAnswer");
+        System.out.println("DO POST: User Answer " + userAnswer);
+
+        Long nextQuestionByAnswerId = util.findNextQuestionByAnswerId(userAnswer, answers);
+        nextQuestionId = nextQuestionByAnswerId;
+        /**
+         * Experiments with JSP
+         *
 
         String answer = request.getParameter("answer");
         System.out.println("Answer: " + answer);
@@ -96,11 +127,52 @@ public class GameServlet extends HttpServlet {
             Long userJSPChoice = util.userJSPChoice(answers, userChoice);
             System.out.println(userJSPChoice);
         }
-
+         */
 //        Answer answer = getAnswer(request);
+        response.sendRedirect(String.format("%s?id=%d", "/game", nextQuestionByAnswerId));
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/game.jsp");
-        dispatcher.forward(request, response);
     }
 
+    public Question getQuestion(HttpServletRequest request) {
+
+        Long questionId;
+
+        if (nextQuestionId == 0L) {
+            questionId = 1L;
+        } else{
+            questionId = Long.parseLong(request.getParameter("id"));
+        }
+
+        System.out.println("DO GET: GET QUESTION: Q.ID: " + questionId);
+
+        String questionText = questions.stream()
+                .filter(q -> q.getId().equals(questionId))
+                .map(question -> question.getText())
+                .collect(Collectors.toList())
+                .toString();
+
+        String gameState = questions.stream()
+                .filter(q -> q.getId().equals(questionId))
+                .map(Question::getGameState).toList()
+                .toString();
+
+        String questionGameState = gameState.replaceAll("[\\[\\](){}]", "");
+
+        Question question = Question
+                .builder()
+                .id(questionId)
+                .text(questionText)
+                .gameState(GameState.valueOf(questionGameState))
+                .build();
+
+        List<Answer> answerList = answers.stream()
+                .filter(answer -> answer.getQuestionId() == questionId)
+                .collect(Collectors.toList());
+
+        for (Answer answer : answerList) {
+            question.getAnswers().add(answer);
+        }
+
+        return question;
+    }
 }

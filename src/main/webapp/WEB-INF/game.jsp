@@ -39,19 +39,20 @@
             <p>${questionText}</p>
         </div>
         <ul>
-            <form action="/game" method="post">
-                <label>Answer 1</label>
-                <input type="radio" name="answer" onclick="getAnswer('answer-1')" value="answer-1">
-                <label>Answer 2</label>
-                <input type="radio" name="answer" onclick="getAnswer('answer-2')" value="answer-2">
-                <label class="col-md-4 control-label" for="submit"></label>
-                <button id="submit" class="btn btn-success">Submit</button>
-            </form>
+<%--            <form action="/game" method="post">--%>
+<%--                <label>Answer 1</label>--%>
+<%--                <input type="radio" name="answer" onclick="getAnswer('answer-1')" value="answer-1">--%>
+<%--                <label>Answer 2</label>--%>
+<%--                <input type="radio" name="answer" onclick="getAnswer('answer-2')" value="answer-2">--%>
+<%--                <label class="col-md-4 control-label" for="submit"></label>--%>
+<%--                <button id="submit" class="btn btn-success">Submit</button>--%>
+<%--            </form>--%>
+            <br>
 
             <div class="w3-content" style="max-width:2000px;margin-top:46px">
                 <div class="w3-container w3-content w3-left w3-padding-64" style="max-width:800px" id="band">
-                    <h1 class="w3-wide"><c:out value="${questionText}"></c:out></h1>
-                    <form name="answers" action="question?id=${questionId}" method="post">
+                    <h1 class="w3-wide"><c:out value="${question.text}"></c:out></h1>
+                    <form name="answers" action="question?id=${question.id}" method="post">
                         <c:forEach items="${requestScope.answerList}" var="answer">
                             <div class="w3-container w3-white">
                                 <input type="radio" id="answer_${answer.id}" name="userAnswer" value="${answer.id}">
