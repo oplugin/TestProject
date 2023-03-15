@@ -1,0 +1,125 @@
+
+i
+java:S1192‚"MDefine a constant instead of duplicating this literal "[\\[\\](){}]" 3 times.(Ø–ÚÎýÿÿÿÿ
+x
+java:S1488n"bImmediately return this expression instead of assigning it to the temporary variable "answerList".(°‰Œ®
+s
+java:S1104"]Make currentQuestionId a static final constant or non-public and provide accessors if needed.(‹Á“Ü
+u
+java:S1104"ZMake nextQuestionId a static final constant or non-public and provide accessors if needed.(Ý«™Õûÿÿÿÿ
+u
+java:S1104"ZMake chosenAnswerId a static final constant or non-public and provide accessors if needed.(²Íð‚ûÿÿÿÿ
+W
+java:S4973"<Strings and Boxed types should be compared using "equals()".(ÏðÄÔûÿÿÿÿ
+R
+java:S4973"<Strings and Boxed types should be compared using "equals()".(°‰Œ®
+R
+java:S4973 "<Strings and Boxed types should be compared using "equals()".(ëÐì®
+R
+java:S4973*"<Strings and Boxed types should be compared using "equals()".(¦Ñã±
+W
+java:S4973."<Strings and Boxed types should be compared using "equals()".(ú®–˜ýÿÿÿÿ
+W
+java:S49732"<Strings and Boxed types should be compared using "equals()".(•°“¸üÿÿÿÿ
+R
+java:S4973A"<Strings and Boxed types should be compared using "equals()".(ô³ÿÔ
+W
+java:S4973K"<Strings and Boxed types should be compared using "equals()".(ÏðÄÔûÿÿÿÿ
+R
+java:S4973P"<Strings and Boxed types should be compared using "equals()".(°‰Œ®
+R
+java:S4973T"<Strings and Boxed types should be compared using "equals()".(ëÐì®
+R
+java:S4973\"<Strings and Boxed types should be compared using "equals()".(¦Ñã±
+W
+java:S4973`"<Strings and Boxed types should be compared using "equals()".(ú®–˜ýÿÿÿÿ
+W
+java:S4973d"<Strings and Boxed types should be compared using "equals()".(•°“¸üÿÿÿÿ
+R
+java:S4973n"<Strings and Boxed types should be compared using "equals()".(°‰Œ®
+W
+java:S4973}"<Strings and Boxed types should be compared using "equals()".(Ã•Ó‡úÿÿÿÿ
+X
+java:S4973"<Strings and Boxed types should be compared using "equals()".(Ã•Ó‡úÿÿÿÿ
+X
+java:S4973¡"<Strings and Boxed types should be compared using "equals()".(¯á­Äøÿÿÿÿ
+M
+java:S3958@"2Refactor the code so this stream pipeline is used.(÷ìßƒÿÿÿÿÿ
+g
+java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(õÜýV
+T
+java:S1612">Replace this lambda with method reference 'Question::getText'.(È¡º…
+h
+java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹
+R
+java:S1612"<Replace this lambda with method reference 'Answer::getText'.(Øÿ¯£
+h
+java:S6204""RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹
+U
+java:S1612!":Replace this lambda with method reference 'Answer::getId'.(Ê£©Ïøÿÿÿÿ
+N	java:S106$"9Replace this use of System.out or System.err by a logger.(Î­Ô 
+S	java:S106%"9Replace this use of System.out or System.err by a logger.(¬©Ä¬øÿÿÿÿ
+N	java:S106&"9Replace this use of System.out or System.err by a logger.(ÊÏÔ¤
+g
+java:S6204,"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(õÜýV
+T
+java:S1612+">Replace this lambda with method reference 'Question::getText'.(È¡º…
+h
+java:S62040"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹
+R
+java:S1612/"<Replace this lambda with method reference 'Answer::getText'.(Øÿ¯£
+h
+java:S62044"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹
+U
+java:S16123":Replace this lambda with method reference 'Answer::getId'.(Ê£©Ïøÿÿÿÿ
+N	java:S1066"9Replace this use of System.out or System.err by a logger.(Î­Ô 
+S	java:S1067"9Replace this use of System.out or System.err by a logger.(¬©Ä¬øÿÿÿÿ
+N	java:S1068"9Replace this use of System.out or System.err by a logger.(ÊÏÔ¤
+g
+java:S6204M"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(õÜýV
+T
+java:S1612L">Replace this lambda with method reference 'Question::getText'.(È¡º…
+h
+java:S6204R"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹
+R
+java:S1612Q"<Replace this lambda with method reference 'Answer::getText'.(Øÿ¯£
+h
+java:S6204V"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹
+U
+java:S1612U":Replace this lambda with method reference 'Answer::getId'.(Ê£©Ïøÿÿÿÿ
+g
+java:S6204^"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(õÜýV
+T
+java:S1612]">Replace this lambda with method reference 'Question::getText'.(È¡º…
+h
+java:S6204b"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹
+R
+java:S1612a"<Replace this lambda with method reference 'Answer::getText'.(Øÿ¯£
+h
+java:S6204f"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹
+U
+java:S1612e":Replace this lambda with method reference 'Answer::getId'.(Ê£©Ïøÿÿÿÿ
+L
+java:S1172l"1Remove this unused method parameter "questionId".(—òéÐüÿÿÿÿ
+h
+java:S6204p"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹
+R
+java:S1612o"<Replace this lambda with method reference 'Answer::getText'.(Øÿ¯£
+m
+java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ªçŸŠøÿÿÿÿ
+U
+java:S1612~":Replace this lambda with method reference 'Answer::getId'.(Ê£©Ïøÿÿÿÿ
+T	java:S106†"9Replace this use of System.out or System.err by a logger.(Àµ”Áüÿÿÿÿ
+ˆ
+java:S1130‹"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(¸áÁÙúÿÿÿÿ
+h
+java:S6204’"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(õÜýV
+V
+java:S1612‘":Replace this lambda with method reference 'Answer::getId'.(Ê£©Ïøÿÿÿÿ
+T	java:S106˜"9Replace this use of System.out or System.err by a logger.(Àµ”Áüÿÿÿÿ
+h
+java:S6204£"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(õÜýV
+]
+java:S1612¢"FReplace this lambda with method reference 'Answer::getNextQuestionId'.(ä½Åò
+Y
+java:S1128">Remove this unused import 'com.example.servletproject.Runner'.(”°ª«ùÿÿÿÿ
