@@ -22,8 +22,6 @@ public class IndexServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         //TODO Добавить инит - создание репозитория
-
-
     }
 
     @Override

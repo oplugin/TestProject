@@ -19,7 +19,7 @@ public final class Config {
     JSONParser parser = new JSONParser();
 
     Question question = new Question();
-    Collection<Question> questionCollection = new ArrayList<>();
+    Collection<Question> arrayList = new ArrayList<>();
     Collection<Answer> answerCollection = new ArrayList<>();
 
     ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -27,18 +27,6 @@ public final class Config {
 
 
     public Collection<Question> jsonQuestionArrayParser(String path) throws IOException {
-
-/**
- *
- *        FileInputStream fis = new FileInputStream(file);
- *        InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
- *        BufferedReader reader = new BufferedReader(isr)
- *
- *
- *        FileReader reader = new FileReader(path)
- *
- */
-
 
         try (FileInputStream fis = new FileInputStream(path);
              InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
@@ -60,80 +48,55 @@ public final class Config {
                 String gameState = (String) jsonQuestion.get("gameState");
                 question.setGameState(GameState.valueOf(gameState));
 
-                questionCollection.add(question);
+                arrayList.add(question);
             }
 
-            return questionCollection;
+            return arrayList;
 
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-
         return null;
     }
 
+    public Collection<Answer> jsonAnswerArrayParser(String path) throws IOException {
 
-//    public Collection<Question> jsonAnswerArrayParser() {
-//
-//        JSONParser parser = new JSONParser();
-//
-//        try {
-//            JSONArray jsonArray = (JSONArray) parser.parse(new FileReader(JSON_ANSWERS));
-//
-//            for (Object object : jsonArray) {
-//                JSONObject jsonQuestion = (JSONObject) object;
-//
-//                Question question = new Question();
-//
-//                Long id = (Long) jsonQuestion.get("id");
-//                question.setId(id);
-//
-//                String text = (String) jsonQuestion.get("text");
-//                question.setText(text);
-//
-//                String gameState = (String) jsonQuestion.get("gameState");
-//                question.setGameState(GameState.valueOf(gameState));
-//
-//                questionCollection.add(question);
-//            }
-//
-//            return questionCollection;
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//
-//
-//        return null;
-//
-//    }
+        try (FileInputStream fis = new FileInputStream(path);
+             InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
+             BufferedReader reader = new BufferedReader(isr)) {
 
-//    public void initQuestData() {
-//        Config.getData(JSON_QUESTIONS, Question.class);
-//    }
-//
-//    public static <T> List<Question> getData (String fileName, Class<T> type ) {
-//        ObjectMapper mapper = new JsonMapper();
-//        File file = getFile(fileName);
-//        try {
-//            JavaType javaType = mapper.getTypeFactory()
-//                    .constructParametricType(List.class, type);
-//            return mapper.readValue(file, javaType);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-//
-//    private static File getFile(String fileName) {
-//        URL resource = Config.class.getClassLoader().getResource(fileName);
-//        if (resource == null) {
-//            throw new IllegalArgumentException("file not found!");
-//        }
-//        return new File(resource.getFile());
-//    }
+            JSONArray jsonArray = (JSONArray) parser.parse(reader);
+
+            for (Object object : jsonArray) {
+                JSONObject jsonAnswer = (JSONObject) object;
+
+                Answer answer = new Answer();
+
+                Long id = (Long) jsonAnswer.get("id");
+                answer.setId(id);
+
+                String text = (String) jsonAnswer.get("text");
+                answer.setText(text);
+
+                Long questionId = (Long) jsonAnswer.get("questionId");
+                answer.setQuestionId(questionId);
+
+                Long nextQuestionId = (Long) jsonAnswer.get("nextQuestionId");
+                answer.setNextQuestionId(nextQuestionId);
+
+
+                answerCollection.add(answer);
+            }
+
+            return answerCollection;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
