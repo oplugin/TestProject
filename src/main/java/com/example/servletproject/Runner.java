@@ -1,24 +1,38 @@
 package com.example.servletproject;
 
-import com.example.servletproject.entity.Answer;
-import com.example.servletproject.entity.GameState;
+import com.example.servletproject.config.Config;
 import com.example.servletproject.entity.Question;
-import com.example.servletproject.util.Util;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.*;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
+
+import java.util.Collection;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Runner {
 
+
+    private static String JSON_TEXT = "QuestText/questions.json";
     Long currentQuestionId = 1L;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
+
+        Config parscer = new Config();
+        Collection<Question> jsonArrayParser = parscer.jsonQuestionArrayParser("");
+        System.out.println(jsonArrayParser);
+
+        String s = jsonArrayParser.stream()
+                .map(question -> question.getId()).collect(Collectors.toList()).toString();
+        System.out.println(s);
 
 
+
+
+/**
+ * Checking results
+ *
         Question question1 = new Question(1L, "Ты потерял память. Принять вызов НЛО ?", GameState.PLAY);
 
         Answer answer1 = new Answer(1L, "Принять вызов", 1L, 2L);
@@ -70,7 +84,7 @@ public class Runner {
         System.out.println(test);
 
         question1.getText();
-
+*/
 //        Util util = new Util();
 //        util.printQuestionAndAnswer(questions, answers);
 //        util.userChoice(answers);
@@ -89,5 +103,24 @@ public class Runner {
 //        util.userChoice(answers);
 //        util.findNextQuestionByAnswerId(answers);
 
+
+    }
+
+    private static void parseEmployeeObject(JSONObject object)
+    {
+        //Get employee object within list
+        JSONObject jsonObject = (JSONObject) object.get("question");
+
+        //Get employee first name
+        Long id = (Long) jsonObject.get("id");
+        System.out.println(id);
+
+        //Get employee last name
+        String text = (String) jsonObject.get("text");
+        System.out.println(text);
+
+        //Get employee website name
+        String gameState = (String) jsonObject.get("gameState");
+        System.out.println(gameState);
     }
 }

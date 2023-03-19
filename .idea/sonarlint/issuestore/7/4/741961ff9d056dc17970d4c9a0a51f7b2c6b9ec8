@@ -1,18 +1,0 @@
-
-‚
-java:S1130"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(œû¿Ø
-q
-java:S2159<"VRemove this call to "equals"; comparisons between unrelated types always return false.(ªœúðøÿÿÿÿ
-M	java:S106F"9Replace this use of System.out or System.err by a logger.(Äþ!
-Q	java:S125J"<This block of commented-out lines of code should be removed.(ÑÓ‰¼
-\
-java:S1128"ARemove this unused import 'com.example.servletproject.util.Util'.(„¹Éÿÿÿÿÿ
-I
-java:S1128"3Remove this unused import 'java.io.BufferedReader'.(€é²Å
-L
-java:S1128
-"6Remove this unused import 'java.io.InputStreamReader'.(ãˆÎÉ
-S
-java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ
-J
-java:S1128"4Remove this unused import 'java.util.stream.Stream'.(ó÷Ž”

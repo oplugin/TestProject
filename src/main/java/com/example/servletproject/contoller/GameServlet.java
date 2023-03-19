@@ -1,20 +1,23 @@
 package com.example.servletproject.contoller;
 
+import com.example.servletproject.config.Config;
+import com.example.servletproject.config.FileResourcesUtils;
 import com.example.servletproject.entity.Answer;
 import com.example.servletproject.entity.GameState;
 import com.example.servletproject.entity.Question;
-import com.example.servletproject.repository.QuestionRepository;
-import com.example.servletproject.service.QuestionService;
 import com.example.servletproject.util.Util;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import lombok.SneakyThrows;
 
-import javax.swing.text.html.Option;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @WebServlet(name = "GameServlet", value = "/game")
 public class GameServlet extends HttpServlet {
@@ -28,36 +31,41 @@ public class GameServlet extends HttpServlet {
     public Long chosenAnswerId = 0L;
 
 
-
-
+    @SneakyThrows
     public void init() throws ServletException {
-        Question question1 = new Question(1L, "Ты потерял память. Принять вызов НЛО ?", GameState.PLAY);
+
+        String fileSep = System.getProperty("file.separator");
+        String dir= getServletContext().getRealPath("/");
+        String file=dir + "WEB-INF" + fileSep + "json" + fileSep + "questions.json";
+
+        Config configParcer = new Config();
+        questions = configParcer.jsonQuestionArrayParser(file);
 
         Answer answer1 = new Answer(1L, "Принять вызов", 1L, 2L);
         Answer answer2 = new Answer(2L, "Отклонить вызов", 1L, 5L);
-        Question question5 = new Question(5L, "Ты отклонил вызов. Поражение", GameState.LOST);
+//        Question question5 = new Question(5L, "Ты отклонил вызов. Поражение", GameState.LOST);
 
-        Question question2 = new Question(2L, "Ты принял вызов. Поднимаешься на мостик к капитану", GameState.PLAY);
+//        Question question2 = new Question(2L, "Ты принял вызов. Поднимаешься на мостик к капитану", GameState.PLAY);
 
         Answer answer3 = new Answer(3L, "Подняться на мостик", 2L, 3L);
         Answer answer4 = new Answer(4L, "Отказаться подниматься на мостик", 2L, 6L);
-        Question question6 = new Question(6L, "Ты не пошел на переговоры. Поражение", GameState.LOST);
+//        Question question6 = new Question(6L, "Ты не пошел на переговоры. Поражение", GameState.LOST);
 
-        Question question3 = new Question(3L, "Ты поднимаешься на мостик. Ты кто ?", GameState.PLAY);
+//        Question question3 = new Question(3L, "Ты поднимаешься на мостик. Ты кто ?", GameState.PLAY);
 
         Answer answer5 = new Answer(5L, "Рассказать правду о себе", 3L, 4L);
         Answer answer6 = new Answer(6L, "Солгать о себе", 3L, 5L);
-        Question question7 = new Question(7L, "Твоя ложь разоблачена. Поражение", GameState.LOST);
+//        Question question7 = new Question(7L, "Твоя ложь разоблачена. Поражение", GameState.LOST);
 
-        Question question4 = new Question(4L, "Ты вернулся домой. Победа", GameState.WIN);
+//        Question question4 = new Question(4L, "Ты вернулся домой. Победа", GameState.WIN);
 
-        questions.add(question1);
-        questions.add(question2);
-        questions.add(question3);
-        questions.add(question4);
-        questions.add(question5);
-        questions.add(question6);
-        questions.add(question7);
+//        questions.add(question1);
+//        questions.add(question2);
+//        questions.add(question3);
+//        questions.add(question4);
+//        questions.add(question5);
+//        questions.add(question6);
+//        questions.add(question7);
 
         answers.add(answer1);
         answers.add(answer2);
@@ -68,8 +76,12 @@ public class GameServlet extends HttpServlet {
 
     }
 
+
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
 
         // TODO Find question by First Question ID
         // Question.ID

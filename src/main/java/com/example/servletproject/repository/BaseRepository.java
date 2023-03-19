@@ -18,7 +18,6 @@ public abstract class BaseRepository<T extends AbstractEntity> implements Reposi
         return map.values();
     }
 
-
     @Override
     public T get(long id) {
         return map.get(id);
