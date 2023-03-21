@@ -14,10 +14,7 @@ import java.util.*;
 
 
 public final class Config {
-    private String JSON_QUESTIONS = "QuestText/questions.json";
-    private String JSON_ANSWERS = "answers.json";
     JSONParser parser = new JSONParser();
-
     Question question = new Question();
     Collection<Question> arrayList = new ArrayList<>();
     Collection<Answer> answerCollection = new ArrayList<>();
@@ -85,7 +82,6 @@ public final class Config {
 
                 Long nextQuestionId = (Long) jsonAnswer.get("nextQuestionId");
                 answer.setNextQuestionId(nextQuestionId);
-
 
                 answerCollection.add(answer);
             }

@@ -9,6 +9,8 @@ public class QuestionRepository extends BaseRepository<Question>{
         return map.values()
                 .stream()
                 .filter(u -> nullOrEquals(pattern.getId(), u.getId()))
-                .filter(u -> nullOrEquals(pattern.getText(), u.getText()));
+                .filter(u -> nullOrEquals(pattern.getText(), u.getText()))
+                .filter(u -> nullOrEquals(pattern.getGameState(), u.getGameState()))
+                .filter(u -> nullOrEquals(pattern.getAnswers(), u.getAnswers()));
     }
 }

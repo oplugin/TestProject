@@ -24,10 +24,8 @@ public class QuestionServlet extends HttpServlet {
 //        Question question = getQuestion(request);
         String questionId = request.getParameter("id");
 
-
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/questionform.jsp");
         dispatcher.forward(request, response);
-
 
     }
 

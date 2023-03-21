@@ -1,87 +1,60 @@
 package com.example.servletproject.service;
 
+import com.example.servletproject.entity.Answer;
+import com.example.servletproject.entity.GameState;
 import com.example.servletproject.entity.Question;
 import com.example.servletproject.repository.AnswerRepository;
 import com.example.servletproject.repository.QuestionRepository;
+import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class QuestionService {
 
-    private final QuestionRepository questionRepository;
-    private final AnswerRepository answerRepository;
+    public Long nextQuestionId = 0L;
 
-    public QuestionService(QuestionRepository questionRepository, AnswerRepository answerRepository) {
-        this.questionRepository = questionRepository;
-        this.answerRepository = answerRepository;
+    public Question getQuestion(HttpServletRequest request, Collection<Question> questions, Collection<Answer> answers ) {//TODO перенести в Сервисы
+
+        Long questionId;
+
+        if (nextQuestionId == 0L) {
+            questionId = 1L;
+        } else{
+            questionId = Long.parseLong(request.getParameter("id"));
+        }
+
+        System.out.println("DO GET: GET QUESTION: Q.ID: " + questionId);
+
+        String questionText = questions.stream()
+                .filter(q -> q.getId().equals(questionId))
+                .map(question -> question.getText())
+                .collect(Collectors.toList())
+                .toString();
+
+        String gameState = questions.stream()
+                .filter(q -> q.getId().equals(questionId))
+                .map(Question::getGameState).toList()
+                .toString();
+
+        String questionGameState = gameState.replaceAll("[\\[\\](){}]", "");
+
+        Question question = Question
+                .builder()
+                .id(questionId)
+                .text(questionText)
+                .gameState(GameState.valueOf(questionGameState))
+                .build();
+
+        List<Answer> answerList = answers.stream()
+                .filter(answer -> answer.getQuestionId() == questionId)
+                .collect(Collectors.toList());
+
+        for (Answer answer : answerList) {
+            question.getAnswers().add(answer);
+        }
+
+        return question;
     }
-
-    public Collection<Question> getQuestionList() {
-        Collection<Question> questions = questionRepository.getAll();
-        return questions;
-    }
-
-//    public static final String QUEST_SYMBOL = ":";
-//    public static final String WIN_SYMBOL = "+";
-//    public static final String LOST_SYMBOL = "-";
-//    public static final String LINK_SYMBOL = "<";
-//    public static final String DIGITS = "\\d+";
-//
-//    private final QuestionRepository questionRepository;
-//
-//    public Optional<Question> get(long id) {
-//        return Optional.of(questionRepository.get(id));
-//    }
-//
-//    public Collection<Question> getAll(){
-//        return questionRepository.getAll();
-//    }
-//
-//    @SneakyThrows
-//    public Optional<Question> update(Long questionId, String text) {
-//        Question question = questionRepository.get(questionId);
-//        question.setText(text);
-//        questionRepository.update(question);
-//        return Optional.of(question);
-//    }
-//
-//    public Map<Long, Question> fillDraftMap(String text) {
-//        Map<Long, Question> map = new TreeMap<>();
-//        text = "\n" + text;
-//        String pattern = "\n(%s)([:<+-])".formatted(DIGITS);
-//        String[] parts = text.split(pattern);
-//        int index = 1;
-//        Matcher labelIterator = Pattern.compile(pattern).matcher(text);
-//        Question question = new Question();
-//        while (labelIterator.find()) {
-//            long key = Long.parseLong(labelIterator.group(1));
-//            String type = labelIterator.group(2);
-//            String partText = parts[index++].strip();
-//            Optional<Question> newQuestion = fillQuestion(question, key, type, partText);
-//            if (newQuestion.isPresent()) {
-//                question = newQuestion.get();
-//                map.put(key, question);
-//            }
-//        }
-//        return map;
-//    }
-//
-//    private Optional<Question> fillQuestion(Question currentQuestion, long key, String type, String partText) {
-//        currentQuestion = switch (type) {
-//            case QUEST_SYMBOL -> Question.builder().text(partText).gameState(GameState.PLAY).build();
-//            case WIN_SYMBOL -> Question.builder().text(partText).gameState(GameState.WIN).build();
-//            case LOST_SYMBOL -> Question.builder().text(partText).gameState(GameState.LOST).build();
-//            case LINK_SYMBOL -> {
-//                Answer build = Answer.builder()
-//                        .nextQuestionId(key)
-//                        .questionId(0L)
-//                        .text(partText)
-//                        .build();
-//                currentQuestion.getAnswers().add(build);
-//                yield null;
-//            }
-//            default -> throw new AppException("incorrect parsing");
-//        };
-//        return Optional.ofNullable(currentQuestion);
-//    }
 }
