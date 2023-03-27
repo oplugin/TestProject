@@ -95,47 +95,47 @@ public class GameServlet extends HttpServlet {
         response.sendRedirect(String.format("%s?id=%d", "/game", nextQuestionByAnswerId));
 
     }
-
-    public Question getQuestion(HttpServletRequest request) {//TODO перенести в Сервисы
-
-        Long questionId;
-
-        if (nextQuestionId == 0L) {
-            questionId = 1L;
-        } else{
-            questionId = Long.parseLong(request.getParameter("id"));
-        }
-
-        System.out.println("DO GET: GET QUESTION: Q.ID: " + questionId);
-
-        String questionText = questions.stream()
-                .filter(q -> q.getId().equals(questionId))
-                .map(question -> question.getText())
-                .collect(Collectors.toList())
-                .toString();
-
-        String gameState = questions.stream()
-                .filter(q -> q.getId().equals(questionId))
-                .map(Question::getGameState).toList()
-                .toString();
-
-        String questionGameState = gameState.replaceAll("[\\[\\](){}]", "");
-
-        Question question = Question
-                .builder()
-                .id(questionId)
-                .text(questionText)
-                .gameState(GameState.valueOf(questionGameState))
-                .build();
-
-        List<Answer> answerList = answers.stream()
-                .filter(answer -> answer.getQuestionId() == questionId)
-                .collect(Collectors.toList());
-
-        for (Answer answer : answerList) {
-            question.getAnswers().add(answer);
-        }
-
-        return question;
-    }
+//
+//    public Question getQuestion(HttpServletRequest request) {//TODO перенести в Сервисы
+//
+//        Long questionId;
+//
+//        if (nextQuestionId == 0L) {
+//            questionId = 1L;
+//        } else{
+//            questionId = Long.parseLong(request.getParameter("id"));
+//        }
+//
+//        System.out.println("DO GET: GET QUESTION: Q.ID: " + questionId);
+//
+//        String questionText = questions.stream()
+//                .filter(q -> q.getId().equals(questionId))
+//                .map(question -> question.getText())
+//                .collect(Collectors.toList())
+//                .toString();
+//
+//        String gameState = questions.stream()
+//                .filter(q -> q.getId().equals(questionId))
+//                .map(Question::getGameState).toList()
+//                .toString();
+//
+//        String questionGameState = gameState.replaceAll("[\\[\\](){}]", "");
+//
+//        Question question = Question
+//                .builder()
+//                .id(questionId)
+//                .text(questionText)
+//                .gameState(GameState.valueOf(questionGameState))
+//                .build();
+//
+//        List<Answer> answerList = answers.stream()
+//                .filter(answer -> answer.getQuestionId() == questionId)
+//                .collect(Collectors.toList());
+//
+//        for (Answer answer : answerList) {
+//            question.getAnswers().add(answer);
+//        }
+//
+//        return question;
+//    }
 }
