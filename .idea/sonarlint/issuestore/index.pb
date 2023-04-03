@@ -21,8 +21,6 @@ w
 G.idea/sonarlint/issuestore/3/2/3267938e0a851879e417d44dfbaa79f0ea288665,8\f\8fdc746975e3cb881b1771708951d1e97c8ff960
 j
 :src/main/java/com/example/servletproject/entity/Quest.java,0\8\08ca4a615b0fd11e69b560055339b3a43c1075d3
-[
-+src/main/webapp/WEB-INF/json/questions.json,2\f\2f93ce45b53520dba80f21cd4e59cec5f96843dc
 g
 7src/main/java/com/example/servletproject/util/Util.java,3\a\3a7b8ade48047effb9981cf187ff93597b85ad97
 O
@@ -38,3 +36,5 @@ Q
 !src/main/webapp/WEB-INF/index.jsp,5\3\53f2773448a6c5938ccf5b998853f2da8ff8c2d4
 t
 Dsrc/main/java/com/example/servletproject/contoller/IndexServlet.java,f\6\f614194de151e4b1ddbd732f1324266e43b438aa
+s
+Csrc/main/java/com/example/servletproject/contoller/GameServlet.java,5\7\570f19e8c9cdf79295b39bea6e3247dd32142eb4
